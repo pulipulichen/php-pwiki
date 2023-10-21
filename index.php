@@ -24,6 +24,7 @@ if (isset($_POST["password"])) {
     if (isset($_POST["page_content"])) {
       file_put_contents($content_file_path, trim($_POST["page_content"]));
     }
+    $_COOKIE['pwiki_password'] = $CONFIG_PASSWORD;
   }
   else {
     // echo "no";
@@ -121,7 +122,7 @@ if (file_exists($content_file_path)) {
         ?>
       <div style="text-align:center;">
         <div class="ui action input">
-          <input type="password" name="password">
+          <input type="password" name="password" value="<?php echo $_COOKIE["pwiki_password"] ?>">
           <button type="submit" class="ui positive button">Save</button>
           <a href="./" class="ui button">Cancel</a>
         </div>
