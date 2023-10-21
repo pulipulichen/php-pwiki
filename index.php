@@ -54,7 +54,8 @@ if (file_exists($content_file_path)) {
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-<link rel="image_src" type="image/png" href="https://blogger.googleusercontent.com/img/a/AVvXsEiZ20DEUEXGi8r22gBsnyxEi6QApQiH4bj1WsIJgZr9cLUyuHvveIUzLJ5NSi9uFMEJewuy82i6kHnJ50zJsJ73h5bPQzp36fw_phYgPDILLQSBC504tPuKGuEqCrniUM5abLT_0ca9DVVd1enhgzI8kOP3ju-4_GrB6znax5QXNUYFt1KTMaqk6Q" />
+
+<link rel="icon" type="image/png" href="https://blogger.googleusercontent.com/img/a/AVvXsEiZ20DEUEXGi8r22gBsnyxEi6QApQiH4bj1WsIJgZr9cLUyuHvveIUzLJ5NSi9uFMEJewuy82i6kHnJ50zJsJ73h5bPQzp36fw_phYgPDILLQSBC504tPuKGuEqCrniUM5abLT_0ca9DVVd1enhgzI8kOP3ju-4_GrB6znax5QXNUYFt1KTMaqk6Q" />
 
 <script src="https://semantic-ui.com/javascript/library/jquery.min.js"></script>
 <script src="https://semantic-ui.com/dist/semantic.min.js"></script>
