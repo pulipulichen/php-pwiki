@@ -1,18 +1,27 @@
 <?php
 
-$CONFIG_USER = "";
-
 # ===============================
 
 $title_file_path = "./.pwiki_data/title.txt";
 $content_file_path = "./.pwiki_data/content.txt";
 
-if (isset($_POST["page_title"])) {
-  file_put_contents($title_file_path, $_POST["page_title"]);
-}
+if (isset($_POST["password"])) {
+  $pw_file_path = "./.pwiki_data/password.txt";
 
-if (isset($_POST["page_content"])) {
-  file_put_contents($content_file_path, $_POST["page_content"]);
+  $CONFIG_PASSWORD = false;
+  if (file_exists($pw_file_path)) {
+    $CONFIG_PASSWORD = file_get_contents($pw_file_path);
+  } 
+  
+  if ($CONFIG_PASSWORD !== false && $CONFIG_PASSWORD === $_POST["password"]) {
+    if (isset($_POST["page_title"])) {
+      file_put_contents($title_file_path, $_POST["page_title"]);
+    }
+
+    if (isset($_POST["page_content"])) {
+      file_put_contents($content_file_path, $_POST["page_content"]);
+    }
+  }
 }
 
 
@@ -42,18 +51,35 @@ if (file_exists($content_file_path)) {
 <script src="https://semantic-ui.com/javascript/library/jquery.min.js"></script>
 <script src="https://semantic-ui.com/dist/semantic.min.js"></script>
 <link rel="stylesheet" type="text/css" class="ui" href="https://semantic-ui.com/dist/semantic.min.css">
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
+
+<link href="./lib/toc/toc.css" rel="stylesheet">
+
 <title><?php echo $PAGE_TITLE; ?> - pwiki</title>
 </head>
 <body>
-  <form class="ui container form" action="." method="post">
 
+<nav class="toc">
+  <ul class="main">
+  </ul>
+  <svg class="toc-marker" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+  <path stroke="#444" stroke-width="3" fill="transparent" stroke-dasharray="0, 0, 0, 1000" stroke-linecap="round" stroke-linejoin="round" transform="translate(-0.5, -0.5)" />
+  </svg>
+</nav>
+
+  <form class="ui container form" action="." method="post">
 
     <?php
       if ($_GET["edit"] !== "true") {
         ?>
     <h1><?php echo $PAGE_TITLE; ?></h1>
     
-    <div class="content"><?php echo $PAGE_CONTENT; ?></div>
+    <div class="contents"><?php echo $PAGE_CONTENT; ?></div>
+    <script src="./lib/toc/toc.js"></script>
         <?php
       }
       else {
@@ -71,7 +97,12 @@ if (file_exists($content_file_path)) {
           <textarea name="page_content" id="page_content" placeholder="Content..."><?php echo $PAGE_CONTENT; ?></textarea>
         </div>
       </div>
-        
+      <script>
+        $(document).ready(function() {
+          $('#page_content').summernote();
+        });
+      </script>
+      
         <?php
       }
     ?>
@@ -86,7 +117,7 @@ if (file_exists($content_file_path)) {
         <div class="ui action input">
           <input type="password" name="password">
           <button type="submit" class="ui positive button">Save</button>
-          <a href="?edit=false" class="ui button">Cancel</a>
+          <a href="./" class="ui button">Cancel</a>
         </div>
       </div>
         <?php
