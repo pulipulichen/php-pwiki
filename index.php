@@ -12,6 +12,7 @@ if (isset($_POST["password"])) {
   if (file_exists($pw_file_path)) {
     $CONFIG_PASSWORD = file_get_contents($pw_file_path);
   } 
+  echo $CONFIG_PASSWORD;
   
   if ($CONFIG_PASSWORD !== false && $CONFIG_PASSWORD === $_POST["password"]) {
     if (isset($_POST["page_title"])) {
