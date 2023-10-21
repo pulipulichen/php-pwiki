@@ -16,6 +16,7 @@ if (isset($_POST["password"])) {
   echo $CONFIG_PASSWORD;
   
   if ($CONFIG_PASSWORD !== false && $CONFIG_PASSWORD === $_POST["password"]) {
+    echo "okok";
     if (isset($_POST["page_title"])) {
       file_put_contents($title_file_path, $_POST["page_title"]);
     }
