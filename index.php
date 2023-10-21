@@ -5,6 +5,7 @@
 $title_file_path = "./.pwiki_data/title.txt";
 $content_file_path = "./.pwiki_data/content.txt";
 
+echo $_POST["password"];
 if (isset($_POST["password"])) {
   $pw_file_path = "./.pwiki_data/password.txt";
 
