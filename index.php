@@ -5,28 +5,28 @@
 $title_file_path = "./.pwiki_data/title.txt";
 $content_file_path = "./.pwiki_data/content.txt";
 
-echo $_POST["password"];
+// echo $_POST["password"];
 if (isset($_POST["password"])) {
   $pw_file_path = "./.pwiki_data/password.txt";
 
   $CONFIG_PASSWORD = false;
   if (file_exists($pw_file_path)) {
-    $CONFIG_PASSWORD = file_get_contents($pw_file_path);
+    $CONFIG_PASSWORD = trim(file_get_contents($pw_file_path));
   } 
-  echo $CONFIG_PASSWORD;
+  // echo $CONFIG_PASSWORD;
   
-  if ($CONFIG_PASSWORD !== false && $CONFIG_PASSWORD === $_POST["password"]) {
-    echo "okok";
+  if ($CONFIG_PASSWORD !== false && $CONFIG_PASSWORD === trim($_POST["password"])) {
+    // echo "okok";
     if (isset($_POST["page_title"])) {
-      file_put_contents($title_file_path, $_POST["page_title"]);
+      file_put_contents($title_file_path, trim($_POST["page_title"]));
     }
 
     if (isset($_POST["page_content"])) {
-      file_put_contents($content_file_path, $_POST["page_content"]);
+      file_put_contents($content_file_path, trim($_POST["page_content"]));
     }
   }
   else {
-    echo "no";
+    // echo "no";
   }
 }
 
