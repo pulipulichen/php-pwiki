@@ -104,11 +104,7 @@ if (file_exists($content_file_path)) {
           <textarea name="page_content" id="page_content" placeholder="Content..."><?php echo $PAGE_CONTENT; ?></textarea>
         </div>
       </div>
-      <script>
-        $(document).ready(function() {
-          $('#page_content').summernote();
-        });
-      </script>
+      <script src="./lib/summernote/summernote.js"></script>
       
         <?php
       }
