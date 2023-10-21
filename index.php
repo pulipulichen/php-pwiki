@@ -1,0 +1,113 @@
+<?php
+
+$CONFIG_USER = "";
+
+# ===============================
+
+$title_file_path = "./.pwiki_data/title.txt";
+$content_file_path = "./.pwiki_data/content.txt";
+
+if (isset($_POST["page_title"])) {
+  file_put_contents($title_file_path, $_POST["page_title"]);
+}
+
+if (isset($_POST["page_content"])) {
+  file_put_contents($content_file_path, $_POST["page_content"]);
+}
+
+
+# ===============================
+
+
+$PAGE_TITLE = "pwiki";
+
+if (file_exists($title_file_path)) {
+  $PAGE_TITLE = file_get_contents($title_file_path);
+} 
+
+$PAGE_CONTENT = "Welcome to pwiki!";
+
+if (file_exists($content_file_path)) {
+  $PAGE_CONTENT = file_get_contents($content_file_path);
+}
+?><!DOCTYPE html>
+<html>
+<head>
+  <!-- Standard Meta -->
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+<link rel="image_src" type="image/png" href="https://blogger.googleusercontent.com/img/a/AVvXsEiZ20DEUEXGi8r22gBsnyxEi6QApQiH4bj1WsIJgZr9cLUyuHvveIUzLJ5NSi9uFMEJewuy82i6kHnJ50zJsJ73h5bPQzp36fw_phYgPDILLQSBC504tPuKGuEqCrniUM5abLT_0ca9DVVd1enhgzI8kOP3ju-4_GrB6znax5QXNUYFt1KTMaqk6Q" />
+
+<script src="https://semantic-ui.com/javascript/library/jquery.min.js"></script>
+<script src="https://semantic-ui.com/dist/semantic.min.js"></script>
+<link rel="stylesheet" type="text/css" class="ui" href="https://semantic-ui.com/dist/semantic.min.css">
+<title><?php echo $PAGE_TITLE; ?> - pwiki</title>
+</head>
+<body>
+  <form class="ui container form" action="." method="post">
+
+
+    <?php
+      if ($_GET["edit"] !== "true") {
+        ?>
+    <h1><?php echo $PAGE_TITLE; ?></h1>
+    
+    <div class="content"><?php echo $PAGE_CONTENT; ?></div>
+        <?php
+      }
+      else {
+        ?>
+      <div class="ui field">
+        <label for="page_title">Page Title</label>
+        <div class="ui input">
+          <input type="text" name="page_title" id="page_title" placeholder="Title..." value="<?php echo $PAGE_TITLE; ?>" />
+        </div>
+      </div>
+
+      <div class="ui field">
+        <label for="page_content">Page Content</label>
+        <div class="ui input">
+          <textarea name="page_content" id="page_content" placeholder="Content..."><?php echo $PAGE_CONTENT; ?></textarea>
+        </div>
+      </div>
+        
+        <?php
+      }
+    ?>
+
+
+    <hr />
+    
+    <?php
+      if ($_GET["edit"] === "true") {
+        ?>
+      <div style="text-align:center;">
+        <div class="ui action input">
+          <input type="password" name="password">
+          <button type="submit" class="ui positive button">Save</button>
+          <a href="?edit=false" class="ui button">Cancel</a>
+        </div>
+      </div>
+        <?php
+      }
+    ?>
+    <div class="ui right aligned container">
+      |
+      <?php
+      if ($_GET["edit"] !== "true") {
+        ?>
+        <a href="?edit=true">Edit</a>
+      |
+        <?php
+      }
+      ?>
+      <a href="https://github.com/pulipulichen/php-pwiki" target="pwiki">PWiki Author</a>
+      |
+      <a href="https://p.ecpay.com.tw/4DD5FEE" target="pwiki">Donate</a>
+      |
+    </div>
+  </form>
+  
+</body>
+</html>
