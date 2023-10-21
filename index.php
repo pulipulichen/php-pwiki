@@ -24,7 +24,8 @@ if (isset($_POST["password"])) {
     if (isset($_POST["page_content"])) {
       file_put_contents($content_file_path, trim($_POST["page_content"]));
     }
-    $_COOKIE['pwiki_password'] = $CONFIG_PASSWORD;
+    // $_COOKIE['pwiki_password'] = $CONFIG_PASSWORD;
+    setcookie("pwiki_password", $CONFIG_PASSWORD, time() + 360000, "/");
   }
   else {
     // echo "no";
