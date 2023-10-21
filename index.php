@@ -25,6 +25,9 @@ if (isset($_POST["password"])) {
       file_put_contents($content_file_path, $_POST["page_content"]);
     }
   }
+  else {
+    echo "no";
+  }
 }
 
 
